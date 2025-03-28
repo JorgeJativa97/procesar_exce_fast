@@ -9,3 +9,9 @@ services:
       - .:/app
     environment:
       - APP_ENV=production
+networks:
+  my_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.50.100
