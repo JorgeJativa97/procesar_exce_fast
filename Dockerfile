@@ -18,7 +18,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar la aplicación
-COPY main.py .
+COPY tesoreria.py .
 
 # Exponer el puerto
 EXPOSE 80
