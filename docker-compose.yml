@@ -9,9 +9,13 @@ services:
       - .:/app
     environment:
       - APP_ENV=production
+    networks:
+      my_net:
+        ipv4_address: 192.168.50.2  # IP estática para el contenedor
+
 networks:
   my_net:
     driver: bridge
     ipam:
       config:
-        - subnet: 192.168.50.100
+        - subnet: 192.168.50.0/24  # ✅ Subnet correcta
