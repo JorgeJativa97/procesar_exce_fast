@@ -23,18 +23,24 @@ async def procesar_excel(archivo: UploadFile = File(...)):
     # Buscar coincidencias
     df_coincidencias = pd.merge(
         df_recaudos[["FECHA", "VALOR"]],
-        df_tarjetas[["Valor Total Pago", "Comprobante de pago"]],
+        df_tarjetas[["Valor Total Bruto", "Comprobante de pago"]],
         left_on="VALOR",
-        right_on="Valor Total Pago",
+        right_on="Valor Total Bruto",
         how="inner"
     )
     
     # Renombrar columnas
     df_coincidencias = df_coincidencias.rename(columns={
         "VALOR": "Valor Recaudo",
-        "Valor Total Pago": "Valor Tarjeta",
+        "Valor Total Bruto": "Valor Tarjeta",
         "Comprobante de pago": "Comprobante"
     })
+
+    # Eliminar duplicados específicos
+    df_coincidencias = df_coincidencias.drop_duplicates(
+        subset=['FECHA', 'Valor Recaudo', 'Comprobante'],
+        keep='first'
+    )
     
     # Crear el Excel de salida en memoria
     buffer_salida = BytesIO()
