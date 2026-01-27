@@ -4,7 +4,7 @@ services:
   web:
     build: .
     ports:
-      - "8000:8000"
+      - "8001:8000"
     networks:
       custom_network:
         ipv4_address: 192.168.50.100  # 🔹 IP Fija para el contenedor
