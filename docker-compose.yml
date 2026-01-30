@@ -7,7 +7,7 @@ services:
       - "8001:8000"
     networks:
       custom_network:
-        ipv4_address: 192.168.50.100  # 🔹 IP Fija para el contenedor
+        ipv4_address: 192.168.50.90  # 🔹 IP Fija para el contenedor
 
 networks:
   custom_network:
